@@ -1,7 +1,24 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-SOURCE="$HOME/.steam/steam/steamapps/compatdata/0/pfx"
+# Select and existin Proton prefix 
+PFX0="$HOME/.steam/steam/steamapps/compatdata/0/pfx" # This is Proton GE
+PFX1493710="$HOME/.steam/steam/steamapps/compatdata/1493710/pfx" # This is Proton Experimental
+
+if [[ -d "$PFX0" ]]; then
+    SOURCE="$PFX0"
+elif [[ -d "$PFX1493710" ]]; then
+    SOURCE="$PFX1493710"
+else
+    echo "ERROR: No valid Proton prefix found. "
+    echo "Checked:"
+    echo "  Proton GE"
+    echo "  Proton Experimental"
+    echo "  Installing a game will Install a Proton Prefix"
+
+    exit 1
+fi
+
 TARGET="$HOME/.wine"
 
 BACKUP_DIR="$HOME/.wine-backups"
