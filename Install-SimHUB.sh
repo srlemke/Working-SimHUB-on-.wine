@@ -1,20 +1,15 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Select and existin Proton prefix 
-PFX0="$HOME/.steam/steam/steamapps/compatdata/0/pfx" # This is Proton GE
-PFX1493710="$HOME/.steam/steam/steamapps/compatdata/1493710/pfx" # This is Proton Experimental
+# Select prefix 0 usually created by Proton GE
+PFX0="$HOME/.steam/steam/steamapps/compatdata/0/pfx" # Usually this is created by Proton GE
 
 if [[ -d "$PFX0" ]]; then
     SOURCE="$PFX0"
-elif [[ -d "$PFX1493710" ]]; then
-    SOURCE="$PFX1493710"
 else
-    echo "ERROR: No valid Proton prefix found. "
+    echo "ERROR: No 0 prefix found. ($)"
     echo "Checked:"
-    echo "  Proton GE"
-    echo "  Proton Experimental"
-    echo "  Installing a game will Install a Proton Prefix"
+    echo "  This script only works if you install Proton GE and run a game with it to create prefix 0"
 
     exit 1
 fi
